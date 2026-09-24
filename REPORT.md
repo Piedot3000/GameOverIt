@@ -1,8 +1,7 @@
 # Weekly Increment Report
 
-Copy this into your project repository as `REPORT.md` (and keep it in your
-workspace `project/`). Fill it in each week and submit the link. Keep it honest
-and specific: this is graded on what it shows about your week of work.
+One entry per week. Kept honest and specific: this is graded on what it shows about the
+week of work.
 
 ## Week of: Sept. 20 2026 (Week 1)
 

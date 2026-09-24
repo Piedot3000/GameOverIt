@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420" width="1000" height="420" role="img"
+     aria-label="Screen map. The entry point opens the Backlog at /. From the Backlog the user can reach Add game at /games/new, Game detail at /games/:id, and Steam at /steam. Every screen returns to the Backlog.">
+  <style>
+    .b    { font-family: "Segoe UI", Arial, Helvetica, sans-serif; }
+    .ttl  { font-size: 15px;   font-weight: 700; fill: #1e293b; }
+    .sub  { font-size: 11.5px; fill: #475569; }
+    .ent  { font-size: 12.5px; font-weight: 700; fill: #7c2d12; }
+    .ents { font-size: 11px;   fill: #9a3412; }
+    .lbl  { font-size: 11px;   fill: #334155; }
+    .rt   { font-size: 11.5px; font-weight: 700; fill: #14532d; }
+    .box  { fill: #dbeafe; stroke: #1e40af; stroke-width: 2; }
+    .entb { fill: #fed7aa; stroke: #c2410c; stroke-width: 2; }
+    .fwd  { stroke: #1e40af; stroke-width: 2; fill: none; }
+    .ret  { stroke: #166534; stroke-width: 2; fill: none; stroke-dasharray: 7 5; }
+    .ml   { fill: #ffffff; }
+  </style>
+
+  <!-- ============ entry point ============ -->
+  <ellipse class="entb" cx="70" cy="210" rx="64" ry="42"/>
+  <text class="b ent"  x="70" y="204" text-anchor="middle">Entry point</text>
+  <text class="b ents" x="70" y="223" text-anchor="middle">the app opens at /</text>
+
+  <path class="fwd" d="M 134 210 H 176" marker-end="url(#af)"/>
+
+  <!-- ============ the home base ============ -->
+  <rect class="box" x="182" y="168" width="210" height="84" rx="3"/>
+  <text class="b ttl" x="287" y="196" text-anchor="middle">Backlog</text>
+  <text class="b sub" x="287" y="214" text-anchor="middle">route: /</text>
+  <text class="b sub" x="287" y="234" text-anchor="middle">all games · filter · search</text>
+
+  <!-- ============ destinations ============ -->
+  <rect class="box" x="690" y="25" width="250" height="74" rx="3"/>
+  <text class="b ttl" x="815" y="55" text-anchor="middle">Add game — /games/new</text>
+  <text class="b sub" x="815" y="75" text-anchor="middle">title + status · optional details</text>
+
+  <rect class="box" x="690" y="173" width="250" height="74" rx="3"/>
+  <text class="b ttl" x="815" y="203" text-anchor="middle">Game detail — /games/:id</text>
+  <text class="b sub" x="815" y="223" text-anchor="middle">one game · edit · delete</text>
+
+  <rect class="box" x="690" y="321" width="250" height="74" rx="3"/>
+  <text class="b ttl" x="815" y="351" text-anchor="middle">Steam — /steam</text>
+  <text class="b sub" x="815" y="371" text-anchor="middle">connect profile · sync library</text>
+
+  <!-- ============ forward navigation, every arrow labelled ============ -->
+  <path class="fwd" d="M 392 190 L 682 62"  marker-end="url(#af)"/>
+  <path class="fwd" d="M 392 210 H 682"     marker-end="url(#af)"/>
+  <path class="fwd" d="M 392 230 L 682 358" marker-end="url(#af)"/>
+
+  <rect class="ml" x="470" y="117" width="112" height="17"/>
+  <text class="b lbl" x="526" y="130" text-anchor="middle">click + Add game</text>
+
+  <rect class="ml" x="470" y="201" width="112" height="17"/>
+  <text class="b lbl" x="526" y="214" text-anchor="middle">click a game card</text>
+
+  <rect class="ml" x="470" y="285" width="112" height="17"/>
+  <text class="b lbl" x="526" y="298" text-anchor="middle">click Steam in nav</text>
+
+  <!-- ============ return bus: every screen comes back to the Backlog ============ -->
+  <path class="ret" d="M 940 62  H 972"/>
+  <path class="ret" d="M 940 210 H 972"/>
+  <path class="ret" d="M 940 358 H 972"/>
+  <path class="ret" d="M 972 358 V 10 H 287 V 162" marker-end="url(#ar)"/>
+
+  <rect class="ml" x="470" y="2" width="224" height="17"/>
+  <text class="b rt" x="582" y="15" text-anchor="middle">every screen returns to Backlog</text>
+
+  <defs>
+    <marker id="af" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e40af"/>
+    </marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#166534"/>
+    </marker>
+  </defs>
+</svg>
