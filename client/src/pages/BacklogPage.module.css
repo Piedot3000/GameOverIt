@@ -1,0 +1,28 @@
+/* Layout only. The page container itself -- max-width 1100px, centred, with the
+   edge padding that lines the content up with the header -- is supplied by
+   AppLayout's .main, so this page adds no padding and no width of its own. It
+   also does NOT use the global .page class: that one caps out at 44rem, which
+   is narrower than a 3-column grid needs. */
+.page { display: flex; flex-direction: column; }
+
+.heading { margin-bottom: var(--space-2); }
+
+/* Search, sort and Add game on one wrapping row. They share the line equally
+   via the child rule below, except the Add link, which opts out so it stays
+   the width of its own label. */
+.controls { display: flex; flex-wrap: wrap; gap: var(--space-1); align-items: center; margin-bottom: var(--space-2); }
+.controls > * { flex: 1 1 auto; }
+
+/* Reads as a button but is a link: it navigates, so it must be openable and
+   middle-clickable like one. --color-bg on --color-primary is one of the
+   contrast pairs docs/03-design-system.md Step D prints a ratio for. */
+.add {
+  flex: 0 0 auto; font: var(--font-small); font-weight: 700; text-decoration: none;
+  background: var(--color-primary); color: var(--color-bg);
+  padding: var(--space-1) var(--space-2); border-radius: var(--radius);
+}
+/* A real <button> styled as a link: its appearance comes from this class. */
+.clear { background: none; border: 0; color: var(--color-primary); font: var(--font-small); text-decoration: underline; cursor: pointer; }
+
+/* Small, not body: this is a count, which Step C lists under --font-small. */
+.count { font: var(--font-small); color: var(--color-muted); margin: var(--space-2) 0; }

@@ -1,0 +1,15 @@
+.shell { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* Edge padding is the phone value by default and the desktop value from 1024px
+   up. Both come from tokens so the 8px rhythm is decided in one place. */
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-3) var(--edge-phone);
+}
+
+@media (min-width: 1024px) {
+  .main { padding: var(--space-4) var(--edge-desk); }
+}

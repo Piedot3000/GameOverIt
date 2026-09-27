@@ -1,0 +1,16 @@
+/* Layout only: AppLayout's .main supplies the width and the edge padding. */
+.page { display: flex; flex-direction: column; gap: var(--space-3); }
+.intro { margin: 0; max-width: 60ch; font: var(--font-body); color: var(--color-muted); }
+
+.syncRow { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+/* Bare <button>s styled here on purpose: the phone layout needs two full-width
+   stacked actions, and the Button atom's inline sizing is wrong for that. */
+.sync, .disconnect {
+  font: var(--font-small); font-weight: 700; cursor: pointer;
+  border-radius: var(--radius); padding: var(--space-1) var(--space-2);
+  background: var(--color-primary); color: var(--color-bg); border: 1px solid transparent;
+}
+.disconnect { background: transparent; color: var(--color-muted); border-color: var(--color-muted); }
+@media (max-width: 639px) { .sync, .disconnect { flex: 1 1 100%; } }
+
+.hint { margin: 0; font: var(--font-small); color: var(--color-muted); }
