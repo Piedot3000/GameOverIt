@@ -1,7 +1,9 @@
 import express from 'express'
 import cors from 'cors'
+import helmet from 'helmet'
 import { pool } from './db/pool.js'
-import * as sightings from './sightingsRepo.js'
+import gamesRoutes from './routes/games.js'
+import steamRoutes from './routes/steam.js'
 
 const app = express()
 
@@ -15,6 +17,11 @@ const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean)
+
+// One line for several real protections (the course's security checklist asks for
+// exactly this). Before CORS, so the security headers are set on every response
+// including the preflight rejections.
+app.use(helmet())
 
 app.use(cors({ origin: allowedOrigins }))
 app.use(express.json({ limit: '100kb' }))
@@ -36,85 +43,44 @@ app.get('/readyz', async (request, response) => {
   }
 })
 
-// Validation lives on the server because the client can be bypassed. The
-// browser form is for a fast, friendly message; this is for correctness.
-function validate(body) {
-  const errors = []
-  const place = typeof body.place === 'string' ? body.place.trim() : ''
-  const description =
-    typeof body.description === 'string' ? body.description.trim() : ''
-  const spookiness = Number(body.spookiness)
-
-  if (!place) errors.push('place is required')
-  if (place.length > 120) errors.push('place must be 120 characters or fewer')
-  if (description.length > 2000) errors.push('description must be 2000 characters or fewer')
-  if (!Number.isInteger(spookiness) || spookiness < 1 || spookiness > 5) {
-    errors.push('spookiness must be a whole number from 1 to 5')
-  }
-
-  return { errors, value: { place, description, spookiness } }
-}
-
-app.get('/api/sightings', async (request, response, next) => {
-  try {
-    response.json(await sightings.getAll(pool))
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.get('/api/sightings/:id', async (request, response, next) => {
-  try {
-    const row = await sightings.getById(pool, request.params.id)
-    if (!row) return response.status(404).json({ error: 'Not found' })
-    response.json(row)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.post('/api/sightings', async (request, response, next) => {
-  const { errors, value } = validate(request.body ?? {})
-  if (errors.length > 0) return response.status(400).json({ error: errors.join('; ') })
-
-  try {
-    response.status(201).json(await sightings.create(pool, value))
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.put('/api/sightings/:id', async (request, response, next) => {
-  const { errors, value } = validate(request.body ?? {})
-  if (errors.length > 0) return response.status(400).json({ error: errors.join('; ') })
-
-  try {
-    const row = await sightings.update(pool, request.params.id, value)
-    if (!row) return response.status(404).json({ error: 'Not found' })
-    response.json(row)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.delete('/api/sightings/:id', async (request, response, next) => {
-  try {
-    const removed = await sightings.remove(pool, request.params.id)
-    if (!removed) return response.status(404).json({ error: 'Not found' })
-    response.status(204).end()
-  } catch (error) {
-    next(error)
-  }
-})
+// The feature routers. Both are deliberately empty: the backlog endpoints are
+// registered by a later task, the Steam ones by another. The mounts exist now so
+// those tasks add routes without rewiring this file.
+app.use('/api/games', gamesRoutes)
+app.use('/api/steam', steamRoutes)
 
 app.use((request, response) => {
   response.status(404).json({ error: 'No such route' })
 })
 
-// The detail goes in your logs; the visitor gets a plain message. Sending a
-// stack trace to a stranger tells them about your file layout and dependencies.
+// The single place an error becomes a response. The detail goes in your logs;
+// the visitor gets a plain message. Sending a stack trace to a stranger tells
+// them about your file layout and dependencies.
+//
+// Handlers signal the status they mean by putting it on the error (status), and
+// a validation failure can carry a per-field map (fields) for the client to
+// render next to each input. Anything without a status is a genuine fault and
+// stays a 500.
+//
+// A rejected async handler only reaches here if it is registered through wrap()
+// from ./lib/wrap.js, or caught and passed to next(error) by hand -- Express 4
+// does not forward a rejected promise by itself, and an unhandled rejection
+// gets no response and exits the process, taking the whole API down with it.
+//
+// Only a status res.status() will accept is honoured. A non-integer or
+// out-of-range value would throw inside this middleware, and a throw here has
+// nowhere left to go but Express's finalhandler, which prints the stack in the
+// response outside production. Anything else is treated as a plain 500.
+const isHttpErrorStatus = (error) =>
+  Number.isInteger(error.status) && error.status >= 400 && error.status <= 599
+
 app.use((error, request, response, next) => {
   console.error(error)
+  if (isHttpErrorStatus(error)) {
+    const body = { error: error.message }
+    if (error.fields) body.fields = error.fields
+    return response.status(error.status).json(body)
+  }
   response.status(500).json({ error: 'Something went wrong on the server' })
 })
 
