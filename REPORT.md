@@ -23,20 +23,20 @@ Theres alot left to do. Right now documentation, and planning are still being do
 
 ---
 
-## Week of: (date)
+## Week of: Sept. 27 2026 (week 2)
 
 ## What changed this week
 
-- (each real change: a feature added, a bug fixed, a screen or endpoint built)
+- JSX Pages, JSX layouts as well as SQL schema and seed have been made. Styles and tokens for the app have also been done.
 
 ## Why
 
-(what these changes were for)
+These changes are for the app, it's screens and the games on them as well as some navigation.
 
 ## What broke or what I got stuck on
 
-(the honest part: errors, things that did not work, where you are stuck)
+The SQL files are where i mostly got stuck on. I didn't know how to write them or what to write for them. 
 
 ## What is left
 
-(what still has to be done before the final)
+Components, alot more JSX files for said components, alot of review to check if things work, and possibly some steam integration.
