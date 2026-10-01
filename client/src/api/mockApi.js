@@ -199,7 +199,7 @@ export async function getGame(id) {
   // (useParams), and server/handlers/games.js does `Number(req.params.id)`
   // before its own `Number.isInteger` guard. So coerce FIRST and guard the
   // coerced value: guarding the raw argument would 400 `getGame("2")` here while
-  // the real API answers 200 -- the Task 10 detail route would work live and
+  // the real API answers 200 -- the detail route would work live and
   // fail in demo mode.
   const n = Number(id)
   if (!Number.isInteger(n) || n < 1) badId()

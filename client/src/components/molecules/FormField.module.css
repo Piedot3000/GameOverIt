@@ -1,0 +1,10 @@
+/* The label sits above its control with half a space unit between them: a label
+   closer to its own input than to the field above it is what groups the pair
+   visually, and there is no 4px token, so it is calc() on --space-1. */
+.field { display: flex; flex-direction: column; gap: calc(var(--space-1) / 2); }
+
+/* a field label is "Small" (12.5px) and the hint/error are the same step, so a validation message can
+   never be bigger than the field it belongs to. */
+.label { font: var(--font-small); color: var(--color-text); }
+.hint { font: var(--font-small); color: var(--color-muted); }
+.error { font: var(--font-small); color: var(--color-danger); }

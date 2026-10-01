@@ -1,0 +1,13 @@
+/* Sized to the text, not stretched: the sort control sits at the end of the
+   toolbar row beside a search box that takes the remaining space. */
+.wrap { flex: 0 0 auto; }
+
+/* Same visually-hidden pattern as SearchBar's label — the select's own name is
+   read out, "Sort by", without a visible caption nobody asked for. */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* The same look as the Input and Select atoms in atoms/Control.module.css. These
+   molecules use a bare <select>, so they borrow that look by composing rather
+   than restyling it: one surface, one border, one corner and one padding keeps
+   the toolbar looking like a single control. */
+.select { composes: control from "../atoms/Control.module.css"; }

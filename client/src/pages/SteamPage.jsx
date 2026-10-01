@@ -11,7 +11,7 @@ import styles from "./SteamPage.module.css";
  * never visited, so every failure here is explained rather than fatal.
  *
  * `unconfigured` is a state of its own (a 503 from the API), not an error: the
- * feature is switched off, and saying so plainly is SR-9's whole requirement. It is
+ * feature is switched off, and saying so plainly is the whole point. It is
  * only discoverable by attempting something -- `GET /steam/profile` answers 404
  * whether or not a key exists -- so it surfaces on the first connect or sync rather
  * than on load. The notice is worded for that.

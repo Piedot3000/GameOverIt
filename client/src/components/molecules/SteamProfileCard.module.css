@@ -1,0 +1,17 @@
+.card {
+  display: flex; align-items: center; gap: var(--space-2);
+  background: var(--color-surface); border: var(--border); border-radius: var(--radius);
+  padding: var(--space-2);
+}
+.avatar { width: 64px; height: 64px; border-radius: var(--radius); flex: 0 0 auto; }
+/* min-width 0 so a long profile URL cannot push the card wider than its column.
+   A Steam profile URL is a single unbreakable token, so it needs an explicit
+   break opportunity or it overflows instead of wrapping. */
+.body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.name { margin: 0; font: var(--font-body); font-weight: 700; }
+.link {
+  color: var(--color-primary); font: var(--font-small);
+  overflow-wrap: anywhere; text-decoration: none;
+}
+.link:hover { text-decoration: underline; }
+.meta { margin: 0; font: var(--font-small); color: var(--color-muted); }

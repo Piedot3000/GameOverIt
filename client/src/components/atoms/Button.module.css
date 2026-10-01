@@ -1,7 +1,7 @@
 .btn {
   font: var(--font-small); font-weight: 700;
   border: 1px solid transparent;
-  /* --radius, not a literal: every corner in the app comes from one token (R25). */
+  /* --radius, not a literal: every corner in the app comes from one token. */
   border-radius: var(--radius);
   padding: var(--space-1) var(--space-2);
   cursor: pointer;

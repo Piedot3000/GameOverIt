@@ -1,0 +1,4 @@
+/* align-items: flex-start so the retry button sits under the text at its natural
+   width, not stretched to the width of the paragraph. */
+.wrap { border: 1px solid var(--color-danger); border-radius: var(--radius); padding: var(--space-2); display: flex; flex-direction: column; gap: var(--space-1); align-items: flex-start; }
+.text { color: var(--color-danger); margin: 0; font: var(--font-body); }

@@ -1,0 +1,26 @@
+/* One row on every width. On the phone it scrolls sideways rather than wrapping,
+   so filtering never pushes the list itself down the screen. The 2px of bottom padding is the room the
+   scrollbar needs so it does not sit on top of the chip borders. */
+.row {
+  display: flex; gap: var(--space-1);
+  overflow-x: auto;             /* phone: scrolls sideways instead of stacking */
+  padding-bottom: 2px;
+}
+
+/* Full pill (999px, not --radius) — the chip shape is a pill, and a count in
+   parentheses is not how a filter is read at a glance. */
+.chip, .chipActive {
+  font: var(--font-small); white-space: nowrap;
+  background: var(--color-surface); color: var(--color-muted);
+  border: var(--border); border-radius: 999px;
+  padding: var(--space-1) var(--space-2); cursor: pointer;
+}
+/* Weight as well as colour, because aria-pressed is a second signal for a screen
+   reader but a low-vision user needs the visible one to not be colour-only. */
+.chipActive { color: var(--color-bg); background: var(--color-primary); border-color: var(--color-primary); font-weight: 700; }
+.count { font: var(--font-small); }
+/* No opacity here: at 0.8 the count's glyphs composite toward the chip's background, and on the
+   ACTIVE chip (--color-bg text on --color-primary) that measured 4.38:1 -- below the 4.5:1 the design
+   system claims for every pair. At full opacity the same pair is 5.72:1, the figure the spec prints. */
+
+@media (min-width: 1024px) { .row { flex-wrap: wrap; overflow-x: visible; } }

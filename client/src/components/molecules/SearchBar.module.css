@@ -1,0 +1,11 @@
+/* Grows to fill the toolbar row, but never narrower than 220px: on the phone the
+   search box takes the whole line rather than shrinking to a sliver beside the
+   sort control. */
+.wrap { flex: 1 1 220px; }
+
+/* Visually hidden, still read out. clip + 1px keeps it out of the layout instead
+   of pushing the toolbar down, which `display: none` cannot do without hiding it
+   from assistive tech too. */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.input { composes: control from "../atoms/Control.module.css"; }

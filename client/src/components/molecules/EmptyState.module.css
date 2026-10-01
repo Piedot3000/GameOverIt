@@ -1,0 +1,11 @@
+/* Centred and generous: an empty screen is a dead end unless it looks like one
+   somebody meant to leave space in. space-4 vertical keeps the message off the
+   top edge on the phone (Step D's "between major screen regions"). */
+.wrap {
+  text-align: center;
+  padding: var(--space-4) var(--space-2);
+  border: 1px dashed var(--color-muted);   /* a token, not a hex — every value must trace to tokens.css */
+  border-radius: var(--radius);
+}
+.title { font: var(--font-body); font-weight: 700; margin: 0 0 var(--space-1); }
+.body { font: var(--font-small); color: var(--color-muted); margin: 0 0 var(--space-2); }
