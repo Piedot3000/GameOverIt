@@ -1,0 +1,13 @@
+/* 900px: narrower than the layout's 1100px so the two columns stay readable;
+   widths are the one dimension the token block does not scale (the layout's own
+   max-width is a literal too), so this is deliberate rather than an oversight. */
+.form { display: flex; flex-direction: column; gap: var(--space-2); max-width: 900px; }
+/* Phone: one column. Desktop: two. This is the "form splits" breakpoint. */
+.columns { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+@media (min-width: 1024px) { .columns { grid-template-columns: repeat(2, 1fr); } }
+.col { display: flex; flex-direction: column; gap: var(--space-2); }
+.preview { display: flex; align-items: center; gap: var(--space-1); font: var(--font-small); color: var(--color-muted); }
+.previewLabel { color: var(--color-muted); }
+.actions { display: flex; flex-direction: column; gap: var(--space-1); }
+@media (min-width: 640px) { .actions { flex-direction: row; } }
+.formError { color: var(--color-danger); font: var(--font-small); margin: 0; }

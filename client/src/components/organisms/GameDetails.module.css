@@ -1,0 +1,42 @@
+/* Desktop: cover beside the details, then a two-up row of notes | status.
+   Phone: everything stacks, cover first, per the wireframes' phone notes. */
+.details { display: flex; flex-direction: column; gap: var(--space-3); }
+
+.top { display: grid; grid-template-columns: 1fr; gap: var(--space-3); align-items: start; }
+@media (min-width: 1024px) { .top { grid-template-columns: 320px 1fr; } }
+
+.cover, .coverEmpty {
+  width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius); display: block;
+}
+.cover { object-fit: cover; background: var(--color-surface); }
+.coverEmpty {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-surface); border: var(--border);
+  font: var(--font-heading); color: var(--color-muted);
+}
+
+.head { display: flex; flex-direction: column; gap: var(--space-2); }
+.title { font: var(--font-heading); margin: 0; }
+.meta { margin: 0; color: var(--color-muted); font: var(--font-body); }
+.steam { color: var(--color-muted); }
+
+.statusRow { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.hours { color: var(--color-muted); font: var(--font-small); }
+
+.dates { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: 0; }
+.dates div { display: flex; flex-direction: column; gap: 2px; }
+.dates dt { color: var(--color-muted); font: var(--font-small); }
+.dates dd { margin: 0; font: var(--font-body); }
+
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+
+.lower { display: grid; grid-template-columns: 1fr; gap: var(--space-3); align-items: start; }
+@media (min-width: 1024px) { .lower { grid-template-columns: 2fr 1fr; } }
+
+.panel {
+  display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start;
+  background: var(--color-surface); border: var(--border); border-radius: var(--radius);
+  padding: var(--space-2);
+}
+.panelLabel { font: var(--font-small); color: var(--color-muted); margin: 0; font-weight: 700; }
+.notes { margin: 0; font: var(--font-body); white-space: pre-wrap; }

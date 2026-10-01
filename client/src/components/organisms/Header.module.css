@@ -1,0 +1,28 @@
+.bar { background: var(--color-surface); border-bottom: var(--border); }
+
+.inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: var(--space-2) var(--edge-phone);
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2);
+}
+
+.brand { font: var(--font-heading); font-size: 20px; color: var(--color-text); text-decoration: none; }
+
+/* margin-left:auto keeps the nav right-aligned while the bar wraps on narrow
+   screens without absolute positioning. */
+.nav { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; }
+
+.link, .active {
+  font: var(--font-small); color: var(--color-muted); text-decoration: none;
+  padding: var(--space-1); border-radius: var(--radius);
+}
+
+.active { color: var(--color-primary); font-weight: 700; }
+
+.cta {
+  font: var(--font-small); font-weight: 700; text-decoration: none;
+  background: var(--color-primary); color: var(--color-bg);
+  padding: var(--space-1) var(--space-2); border-radius: var(--radius);
+}
+
+@media (min-width: 1024px) { .inner { padding: var(--space-2) var(--edge-desk); } }
