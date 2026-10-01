@@ -1,0 +1,14 @@
+.badge {
+  display: inline-block;
+  font: var(--font-small); font-weight: 700;
+  /* currentColor + a full pill (999px, not --radius): the badge is a pill by
+     shape, and the border colour follows whichever status class is applied. */
+  border: 1px solid currentColor; border-radius: 999px;
+  padding: 2px var(--space-1);
+  /* One status never splits across two lines in a narrow card. */
+  white-space: nowrap;
+}
+.want_to_play { color: var(--color-muted); }
+.playing      { color: var(--color-playing); }
+.completed    { color: var(--color-success); }
+.abandoned    { color: var(--color-danger); }

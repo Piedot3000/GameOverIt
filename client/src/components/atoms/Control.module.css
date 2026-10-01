@@ -1,0 +1,17 @@
+/* One file for all three controls (Input, Select, Textarea), since they share
+   one look: same surface, same border, same corner, same padding, same invalid
+   signal. */
+
+.control {
+  width: 100%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  /* --font-body is the 15px body step. No font-size override here: 14px is not
+     in the token block and not one of the three type sizes. */
+  font: var(--font-body);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-1);
+}
+.control::placeholder { color: var(--color-muted); }
+.invalid { border-color: var(--color-danger); }

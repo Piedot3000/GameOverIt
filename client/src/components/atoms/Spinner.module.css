@@ -1,0 +1,3 @@
+.wrap { display: flex; align-items: center; gap: var(--space-1); color: var(--color-muted); font: var(--font-small); }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-primary); animation: pulse 1s infinite alternate; }
+@keyframes pulse { from { opacity: .3 } to { opacity: 1 } }

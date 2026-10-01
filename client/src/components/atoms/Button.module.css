@@ -1,0 +1,15 @@
+.btn {
+  font: var(--font-small); font-weight: 700;
+  border: 1px solid transparent;
+  /* --radius, not a literal: every corner in the app comes from one token (R25). */
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+}
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* Dark label on the bright fills — 5.72:1 and 10.30:1, both verified. */
+.primary   { background: var(--color-primary); color: var(--color-bg); }
+.cta       { background: var(--color-accent);  color: var(--color-bg); }
+.secondary { background: transparent; color: var(--color-text); border-color: var(--color-muted); }
+.danger    { background: transparent; color: var(--color-danger); border-color: var(--color-danger); }

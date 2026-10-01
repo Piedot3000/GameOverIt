@@ -1,0 +1,9 @@
+/* Step C defines exactly three type sizes and this is the whole atom, so every
+   text node here takes a token: the glyphs are Body, the count is Small. */
+.stars { color: var(--color-accent); font: var(--font-body); letter-spacing: 1px; }
+.num { color: var(--color-muted); font: var(--font-small); margin-left: var(--space-1); letter-spacing: 0; }
+.group { display: inline-flex; gap: 2px; align-items: center; }
+.on, .off, .clear { background: none; border: 0; cursor: pointer; font: var(--font-body); padding: 0 1px; }
+.on { color: var(--color-accent); }
+.off { color: var(--color-muted); }
+.clear { font: var(--font-small); color: var(--color-muted); text-decoration: underline; margin-left: var(--space-1); }
